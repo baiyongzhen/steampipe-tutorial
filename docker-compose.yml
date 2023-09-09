@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  steampipe:
+    build:
+      context: .
+      args:
+        PLUGINS: aws
+    #command: ["service", "start", "--foreground", "--show-password"]
+    command: ["steampipe", "service", "start", "--foreground", "--dashboard", "--dashboard-listen=network"]
+    restart: unless-stopped
+    ports:
+      - 9193:9193
+      - 9194:9194
+    #volumes:
+    #  - ./conf/aws/config:/home/steampipe/.aws/config:rw
+    #  - ./conf/steampipe:/home/steampipe/.steampipe/config
+    environment:
+      - STEAMPIPE_DATABASE_PASSWORD=steampipe
+      - STEAMPIPE_CACHE=true
+      - STEAMPIPE_CACHE_MAX_SIZE_MB=4096
+      - STEAMPIPE_CACHE_TTL=300
+      - STEAMPIPE_QUERY_TIMEOUT=120
+      - STEAMPIPE_MAX_PARALLEL=10
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
