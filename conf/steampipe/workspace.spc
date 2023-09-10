@@ -1,5 +1,4 @@
 workspace "aws_insights" {
-
   mod_location       = "/home/steampipe/.steampipe/mods/steampipe-mod-aws-insights"
   query_timeout       = 300
   snapshot_location   = "acme/dev"
@@ -18,7 +17,6 @@ workspace "aws_insights" {
 
 
 workspace "aws_compliance" {
-
   mod_location       = "/home/steampipe/.steampipe/mods/steampipe-mod-aws-compliance"
   query_timeout       = 300
   snapshot_location   = "acme/dev"
@@ -33,5 +31,4 @@ workspace "aws_compliance" {
   theme               = "dark"  # light, dark, plain
   cache               = true
   cache_ttl           = 300
-
 }
